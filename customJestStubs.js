@@ -2,11 +2,9 @@
 
 const CustomStubMap = {
   'Modules/aModule': 'Modules/aModule',
-  'Modules/aModule':
-    'Modules/aModule.min' /*  Note we are not loading min for stubs */,
+  'Modules/aModule.min': 'Modules/aModule.min',
   'Modules/bModule': 'Modules/bModule',
-  'Modules/bModule':
-    'Modules/bModule.min' /*  Note we are not loading min for stubs */,
+  'Modules/bModule.min': 'Modules/bModule.min',
 };
 
 const PKG_STUBS_PATH =
