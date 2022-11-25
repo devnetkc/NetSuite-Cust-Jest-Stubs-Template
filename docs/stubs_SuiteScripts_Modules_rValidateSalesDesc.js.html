@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: stubs/SuiteScripts/Modules/rValidateSalesDesc.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: stubs/SuiteScripts/Modules/rValidateSalesDesc.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @format
+ * @NApiVersion 2.1
+ * @preserve NApiVersion
+ * @module rValidateSalesDesc
+ * @description Series of methods useful for running validations
+ * @version 1.1.0
+ * @param {Object} log
+ * @param {Object} dialog
+ */
+
+/**
+ * @typedef Error
+ * @type {Object}
+ * @memberof module:rValidateSalesDesc
+ * @property {String} title - Title of error
+ * @property {Object|String} details - Details for the error log
+ */
+
+/**
+ * @alias module:rValidateSalesDescExports
+ * @description Series of methods useful for running validations
+ * @ignore
+ */
+(
+  () => {
+    /**
+     * @name Dependencies
+     * @type {Array}
+     * @memberof module:rValidateSalesDesc
+     * @description Array of dependencies the module requires
+     * @ignore
+     */
+    const Dependencies = ['N/log', 'N/ui/dialog'];
+
+    //AMD &amp; CommonJS compatibility stuff
+    // CommonJS
+    if (typeof module !== 'undefined' &amp;&amp; typeof require !== 'undefined') {
+      module.id = '/SuiteScripts/Modules/rValidateSalesDesc';
+      module.exports = rValidateSalesDesc.apply(
+        this,
+        Dependencies.map(require)
+      );
+      module.exports.mockable = rValidateSalesDesc; // module loader with mockable dependencies
+    }
+    // AMD
+    if (typeof define !== 'undefined') define(Dependencies, rValidateSalesDesc);
+  }
+)();
+
+/**
+ * @alias module:rValidateSalesDesc
+ * @function
+ * @description Series of methods useful for running validations
+ * @version 1.1.0
+ * @param {Object} log
+ * @param {Object} dialog
+ */
+function rValidateSalesDesc(log, dialog) {
+  var salesDescId = 'salesdescription';
+  /**
+   *
+   * @name saveRecord
+   * @description Validates description length meets requirements before saving
+   * @function
+   * @param {Object} context - Script Context
+   * @return {boolean}
+   */
+  function saveRecord(context) {
+    // If the description has not been validated as good then do not save!
+    return descVal_validDescription(context);
+  }
+  /**
+   *
+   * @name fieldChanged
+   * @description Validates description length meets requirements when field is updated
+   * @function
+   * @param {Object} context - Script Context
+   * @return {boolean}
+   */
+  function fieldChanged(context) {
+    if (context.fieldId !== salesDescId) return;
+    return descVal_validDescription(context);
+  }
+  /**
+   *
+   * @name descVal_validDescription
+   * @function
+   * @description Validates length of description meets requirements.
+   * @param {Object} context - Script Context
+   * @return {boolean}
+   */
+  function descVal_validDescription(context) {
+    var validDescriptionLength = true;
+    const Description = context.currentRecord.getText({
+      fieldId: salesDescId,
+    });
+    const DescriptionLength = Description.length;
+    if (DescriptionLength > 45) {
+      // display dialog of error before stopping save function
+      dialogOptions = {
+        title: 'Description too long!',
+        message:
+          'The current description is too long in length.  To keep items to single lines we ask you keep the length to less than 45 characters.  Thanks!',
+      };
+      descVal_displayError(dialogOptions);
+
+      validDescriptionLength = false;
+    }
+    log.debug({
+      title: 'validDescription',
+      details: { validDescriptionLength, Description, DescriptionLength },
+    });
+    return validDescriptionLength;
+  }
+
+  /**
+   *
+   * @name descVal_displayError
+   * @function
+   * @description Validates length of description meets requirements.
+   * @param {Error|String} errMsg - Error object or string with error details included
+   * @return {void}
+   */
+  function descVal_displayError(errMsg) {
+    try {
+      dialog.alert(errMsg);
+      log.debug(errMsg);
+    } catch (e) {
+      log.error({
+        title: e.name,
+        details: e.message,
+      });
+    }
+  }
+  if (typeof module !== 'undefined' &amp;&amp; typeof require !== 'undefined') {
+    return {
+      saveRecord,
+      fieldChanged,
+      descVal_validDescription,
+      descVal_displayError,
+    };
+  }
+  return {
+    saveRecord,
+    fieldChanged,
+  };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-rTask.html">rTask</a></li><li><a href="module-rUtility.html">rUtility</a></li><li><a href="module-rValidateSalesDesc.html">rValidateSalesDesc</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CustomStubMap">CustomStubMap</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Nov 24 2022 22:04:54 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
