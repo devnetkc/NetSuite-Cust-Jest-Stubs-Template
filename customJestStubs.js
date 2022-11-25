@@ -9,6 +9,9 @@ const CustomStubMap = {
     'Modules/bModule' /*  Note we are not loading min for stubs */,
 };
 
+const PKG_STUBS_PATH =
+  '@vnetwork-solutions/ns-custom-stubs-template/stubs/SuiteScripts';
+
 const CUSTOM_STUBS = exclude =>
   Object.keys(CustomStubMap).map(filename => {
     const StubModuleName = `/SuiteScripts/${CustomStubMap[filename]}`;
