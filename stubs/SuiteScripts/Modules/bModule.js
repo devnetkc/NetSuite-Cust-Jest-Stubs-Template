@@ -36,8 +36,8 @@
  */
 function bModule(log) {
   /**
-   * @name get_vendorPrefixB
-   * @description Returns preferred vendor prefix from record or blank if no prefix is located
+   * @name set_CustomFieldValue
+   * @description Example set custom body field value for record
    * @function
    * @memberof module:bModule
    * @param {Record} recordObj - NS Record Object to update
