@@ -258,7 +258,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stubs_SuiteScripts_Modules_aModule.js.html">stubs/SuiteScripts/Modules/aModule.js</a>, <a href="stubs_SuiteScripts_Modules_aModule.js.html#line39">line 39</a>
+        <a href="stubs_SuiteScripts_Modules_aModule.js.html">stubs/SuiteScripts/Modules/aModule.js</a>, <a href="stubs_SuiteScripts_Modules_aModule.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -315,162 +315,7 @@
     
 
     
-    <h4 class="name" id=".EmployeeCount"><span class="type-signature">(static) </span>EmployeeCount<span class="signature">(department)</span><span class="type-signature"> &rarr; {Object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns number of employees in a given department
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>department</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Department to get number of employees from</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stubs_SuiteScripts_Modules_aModule.js.html">stubs/SuiteScripts/Modules/aModule.js</a>, <a href="stubs_SuiteScripts_Modules_aModule.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".GetVendorPrefix"><span class="type-signature">(static) </span>GetVendorPrefix<span class="signature">(itemName)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id=".GetVendorPrefix"><span class="type-signature">(static) </span>GetVendorPrefix<span class="signature">(vendorId)</span><span class="type-signature"> &rarr; {String}</span></h4>
     
 
     
@@ -514,7 +359,7 @@
 
         <tr>
             
-                <td class="name"><code>itemName</code></td>
+                <td class="name"><code>vendorId</code></td>
             
 
             <td class="type">
@@ -530,7 +375,7 @@
 
             
 
-            <td class="description last">Name of item Ex: `JD-4321`</td>
+            <td class="description last">Entity ID of vendor Ex: `4321`</td>
         </tr>
 
     
@@ -571,7 +416,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stubs_SuiteScripts_Modules_aModule.js.html">stubs/SuiteScripts/Modules/aModule.js</a>, <a href="stubs_SuiteScripts_Modules_aModule.js.html#line40">line 40</a>
+        <a href="stubs_SuiteScripts_Modules_aModule.js.html">stubs/SuiteScripts/Modules/aModule.js</a>, <a href="stubs_SuiteScripts_Modules_aModule.js.html#line43">line 43</a>
     </li></ul></dd>
     
 
@@ -625,7 +470,7 @@
     
 
     
-    <h4 class="name" id=".PrefixRegex"><span class="type-signature">(static) </span>PrefixRegex<span class="signature">(characters)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id=".RunQuery"><span class="type-signature">(protected, static) </span>RunQuery<span class="signature">(vendorId)</span><span class="type-signature"> &rarr; {String}</span></h4>
     
 
     
@@ -633,7 +478,7 @@
 
 
 <div class="description">
-    Returns regex object for finding a prefix in a string
+    Returns query result of vendor prefix from vendor record
 </div>
 
 
@@ -669,7 +514,7 @@
 
         <tr>
             
-                <td class="name"><code>characters</code></td>
+                <td class="name"><code>vendorId</code></td>
             
 
             <td class="type">
@@ -685,7 +530,7 @@
 
             
 
-            <td class="description last">Regex pattern to match before `-` for prefix</td>
+            <td class="description last">Vendor entity ID to run query on</td>
         </tr>
 
     
@@ -726,7 +571,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stubs_SuiteScripts_Modules_aModule.js.html">stubs/SuiteScripts/Modules/aModule.js</a>, <a href="stubs_SuiteScripts_Modules_aModule.js.html#line58">line 58</a>
+        <a href="stubs_SuiteScripts_Modules_aModule.js.html">stubs/SuiteScripts/Modules/aModule.js</a>, <a href="stubs_SuiteScripts_Modules_aModule.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -754,6 +599,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    - Returns vendor prefix string from query result
+</div>
+
 
 
 <dl>
@@ -762,7 +611,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">String</span>
 
 
     </dd>
@@ -790,13 +639,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-aModule.html">aModule</a></li><li><a href="module-bModule.html">bModule</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CustomStubMap">CustomStubMap</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-aModule.html">aModule</a></li><li><a href="module-bModule.html">bModule</a></li><li><a href="module-CustomJestStubs.html">CustomJestStubs</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Fri Nov 25 2022 00:02:33 GMT-0600 (Central Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Fri Nov 25 2022 16:14:16 GMT-0600 (Central Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

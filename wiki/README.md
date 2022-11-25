@@ -4,9 +4,11 @@ This project is meant to serve as a baseline template project for getting tests 
 
 Using the directory path `/SuiteScript/...`, we can provide aliases locally for these modules while still being available in NetSuite -- as the root directory for SuiteScript files in NetSuite is `/SuiteScripts/`.
 
+This project pairs with the [NetSuite-CustomModules-Template](https://github.com/devnetkc/NetSuite-CustomModules-Template) tutorial/template project.
+
 ## 🎉 Getting Started
 
-1. Open [`./package.json](./package.json) and customize the project configuration
+1. Open [`./package.json`](./package.json) and customize the project configuration
 2. Run `npm i` to install project dependencies
 3. Add your module path aliases to [`customJestStubs.js`](./customJestStubs.js)
 4. Create a local environment variable `NPM_TOKEN` using your NPM token for the value
@@ -14,25 +16,17 @@ Using the directory path `/SuiteScript/...`, we can provide aliases locally for 
 
 ## 🧐 Notable Files
 
-- [README.hbs](./.ci/templates/README.hbs) -- Base template file the project README.md is generated from
-- [npmrc](./.npmrc) -- NPM environment token loader file for publishing project
-- [docsMD.config](./.ci/config/docsMD.config.js) -- Wiki MD generator from JSDoc notations
-- [jsDocsConf.json](./.ci/config/jsDocsConf.json) -- JSDocs configuration file
+- [`README.hbs`](./.ci/templates/README.hbs) -- Base template file the project README.md is generated from
+- [`npmrc`](./.npmrc) -- NPM environment token loader file for publishing project
+- [`docsMD.config`](./.ci/config/docsMD.config.js) -- Wiki MD generator from JSDoc notations
+- [`jsDocsConf.json`](./.ci/config/jsDocsConf.json) -- JSDocs configuration file
 
 ## 🔨 Scripts
 
 Use `npm run <script>` to execute various commands for the project
 
-- `npm run test` -- Uses Jest to run tests (see [Running Tests](#-running-tests) for more details.)
 - `npm run docs` -- Generates project documentation based on JSDoc notations (Configure with [docsMD.config](./.ci/config/docsMD.config.js) && [jsDocsConf.json](./.ci/config/jsDocsConf.json))
 - `npm run open-docs` -- Opens documentation in browser for viewing
-
-### ✅ Running Tests
-
-- `npm run test` -- Uses Jest to run test files in `./__tests__` directory
-- `npm run test-ci` -- Uses Jest to run test files in `./__tests__` directory in CI mode creating junit report with it
-- `npm run test --watch=watch` -- Runs Jest tests in watch mode
-- `npm run view-coverage` -- Runs Jest tests and opens coverage report in browser window
 
 ## 👷 CI/CD
 
@@ -56,6 +50,9 @@ Azure yaml pipeline files are provided in [`.ci/workflows`](./.ci/workflows).
 ## aModule
 Your custom NetSuite module A
 
+**Summary**: This is example stub of custom NetSuite module A.  It may or may not be in your SuiteCloud project.
+Update your `jest.config.js` to map this module from the stub pkg to your local project if it is available.
+See project `jest.config.js` for further examples of this.  
 **Format**:   
 **Napiversion**: 2.1  
 **Since**: 2022.2  
@@ -64,9 +61,8 @@ Your custom NetSuite module A
 
 * [aModule](#module_aModule)
     * [aModule(query, log)](#exp_module_aModule--aModule) ⏏
-        * [.GetVendorPrefix(itemName)](#module_aModule--aModule.GetVendorPrefix) ⇒ <code>String</code>
-        * [.EmployeeCount(department)](#module_aModule--aModule.EmployeeCount) ⇒ <code>Object</code>
-        * [.PrefixRegex(characters)](#module_aModule--aModule.PrefixRegex) ⇒ <code>Object</code>
+        * [.GetVendorPrefix(vendorId)](#module_aModule--aModule.GetVendorPrefix) ⇒ <code>String</code>
+        * [.RunQuery(vendorId)](#module_aModule--aModule.RunQuery) ⇒ <code>String</code>
 
 <a name="exp_module_aModule--aModule"></a>
 
@@ -82,36 +78,27 @@ NetSuite module A export function
 
 <a name="module_aModule--aModule.GetVendorPrefix"></a>
 
-#### aModule.GetVendorPrefix(itemName) ⇒ <code>String</code>
+#### aModule.GetVendorPrefix(vendorId) ⇒ <code>String</code>
 Returns preferred vendor prefix from record or blank if no prefix is located
 
 **Kind**: static method of [<code>aModule</code>](#exp_module_aModule--aModule)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| itemName | <code>String</code> | Name of item Ex: `JD-4321` |
+| vendorId | <code>String</code> | Entity ID of vendor Ex: `4321` |
 
-<a name="module_aModule--aModule.EmployeeCount"></a>
+<a name="module_aModule--aModule.RunQuery"></a>
 
-#### aModule.EmployeeCount(department) ⇒ <code>Object</code>
-Returns number of employees in a given department
+#### aModule.RunQuery(vendorId) ⇒ <code>String</code>
+Returns query result of vendor prefix from vendor record
 
 **Kind**: static method of [<code>aModule</code>](#exp_module_aModule--aModule)  
+**Returns**: <code>String</code> - - Returns vendor prefix string from query result  
+**Access**: protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| department | <code>String</code> | Department to get number of employees from |
-
-<a name="module_aModule--aModule.PrefixRegex"></a>
-
-#### aModule.PrefixRegex(characters) ⇒ <code>Object</code>
-Returns regex object for finding a prefix in a string
-
-**Kind**: static method of [<code>aModule</code>](#exp_module_aModule--aModule)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| characters | <code>String</code> | Regex pattern to match before `-` for prefix |
+| vendorId | <code>String</code> | Vendor entity ID to run query on |
 
 <a name="module_bModule"></a>
 
@@ -126,7 +113,7 @@ Your custom NetSuite module B
 
 * [bModule](#module_bModule)
     * [bModule(log)](#exp_module_bModule--bModule) ⏏
-        * [.get_vendorPrefixB(recordObj)](#module_bModule--bModule.get_vendorPrefixB) ⇒ <code>String</code>
+        * [.set_CustomFieldValue(recordObj, newValue)](#module_bModule--bModule.set_CustomFieldValue) ⇒ <code>String</code>
 
 <a name="exp_module_bModule--bModule"></a>
 
@@ -139,16 +126,17 @@ NetSuite module B export function
 | --- | --- | --- |
 | log | <code>Object</code> | NS log module |
 
-<a name="module_bModule--bModule.get_vendorPrefixB"></a>
+<a name="module_bModule--bModule.set_CustomFieldValue"></a>
 
-#### bModule.get\_vendorPrefixB(recordObj) ⇒ <code>String</code>
-Returns preferred vendor prefix from record or blank if no prefix is located
+#### bModule.set\_CustomFieldValue(recordObj, newValue) ⇒ <code>String</code>
+Example set custom body field value for record
 
 **Kind**: static method of [<code>bModule</code>](#exp_module_bModule--bModule)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | recordObj | <code>Record</code> | NS Record Object to update |
+| newValue | <code>\*</code> | Value to set record field to |
 
 
 Happy Coding!
