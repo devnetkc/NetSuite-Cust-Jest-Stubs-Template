@@ -1,7 +1,7 @@
 {
   "name": "@vnetwork-solutions/ns-custom-stubs-template",
   "version": "1.1.0",
-  "description": "Custom stubs for NetSuite custom modules",
+  "description": "Template for creating custom stubs for your NetSuite custom modules",
   "main": "customJestStubs.js",
   "author": "Ryan Valizan <ryan@vnetkc.com>",
   "license": "MIT",
