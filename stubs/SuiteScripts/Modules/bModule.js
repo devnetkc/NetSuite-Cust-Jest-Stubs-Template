@@ -41,6 +41,7 @@ function bModule(log) {
    * @function
    * @memberof module:bModule
    * @param {Record} recordObj - NS Record Object to update
+   * @param {*} newValue - Value to set record field to
    * @return {String}
    */
   const set_CustomFieldValue = (recordObj, newValue) => {};
