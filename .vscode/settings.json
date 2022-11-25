@@ -1,0 +1,36 @@
+{
+  // hide directories and files for projet which developers will most likely never need access too or want to open/see
+  "files.exclude": {
+    "ns_npm_repository/**": true,
+    "package-lock.json": true,
+    ".nsdeploy": true,
+    "node_modules/**": false,
+    "payload.json": true,
+    "coverage": true,
+    "jest.config.js": true,
+    "*prettierignore": true,
+    ".jshintrc": true,
+    ".prettierrc.json": true,
+    "project.json": true
+  },
+  "cSpell.words": [
+    "HEADBRANCH",
+    "quickview",
+    "supportwidget",
+    "vendorid"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "[sql]": {
+    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+  },
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": false,
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  }
+}
