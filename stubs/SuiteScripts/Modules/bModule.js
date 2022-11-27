@@ -18,13 +18,16 @@
   const Dependencies = ['N/log'];
   //AMD & CommonJS compatibility stuff
   // CommonJS
+  /* istanbul ignore next */
   if (typeof module !== 'undefined' && typeof require !== 'undefined') {
     module.id = '/SuiteScripts/Modules/bModule';
     module.exports = bModule.apply(this, Dependencies.map(require));
     module.exports.mockable = bModule; // module loader with mockable dependencies
   }
   // AMD
+  /* istanbul ignore next */
   if (typeof define !== 'undefined') {
+    /* istanbul ignore next */
     define(Dependencies, bModule);
   }
 })();
