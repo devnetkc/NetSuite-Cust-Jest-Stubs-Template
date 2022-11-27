@@ -113,7 +113,7 @@ Your custom NetSuite module B
 
 * [bModule](#module_bModule)
     * [bModule(log)](#exp_module_bModule--bModule) ⏏
-        * [.set_CustomFieldValue(recordObj, newValue)](#module_bModule--bModule.set_CustomFieldValue) ⇒ <code>String</code>
+        * [.set_CustomFieldValue(options)](#module_bModule--bModule.set_CustomFieldValue) ⇒ <code>undefined</code>
 
 <a name="exp_module_bModule--bModule"></a>
 
@@ -128,15 +128,17 @@ NetSuite module B export function
 
 <a name="module_bModule--bModule.set_CustomFieldValue"></a>
 
-#### bModule.set\_CustomFieldValue(recordObj, newValue) ⇒ <code>String</code>
+#### bModule.set\_CustomFieldValue(options) ⇒ <code>undefined</code>
 Example set custom body field value for record
 
 **Kind**: static method of [<code>bModule</code>](#exp_module_bModule--bModule)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| recordObj | <code>Record</code> | NS Record Object to update |
-| newValue | <code>\*</code> | Value to set record field to |
+| options | <code>Object</code> | Object of parameters for setting custom body field |
+| options.currentRecord | <code>Record</code> | NS Record Object to update |
+| options.fieldId | <code>String</code> | Field id on record object to update value on |
+| options.value | <code>String</code> | Value to set record field to |
 
 
 Happy Coding!
