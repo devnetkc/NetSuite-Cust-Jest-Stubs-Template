@@ -40,11 +40,13 @@ function bModule(log) {
    * @description Example set custom body field value for record
    * @function
    * @memberof module:bModule
-   * @param {Record} recordObj - NS Record Object to update
-   * @param {*} newValue - Value to set record field to
-   * @return {String}
+   * @param {Object} options - Object of parameters for setting custom body field
+   * @param {Record} options.currentRecord - NS Record Object to update
+   * @param {String} options.fieldId - Field id on record object to update value on
+   * @param {String} options.value - Value to set record field to
+   * @return {undefined}
    */
-  const set_CustomFieldValue = (recordObj, newValue) => {};
+  const set_CustomFieldValue = options => {};
   return {
     set_CustomFieldValue,
   };
