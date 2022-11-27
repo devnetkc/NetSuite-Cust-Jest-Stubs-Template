@@ -3,10 +3,11 @@
 name: Update Documentation
 on:
   pull_request:
-    types: [opened, edited]
+    branches: [main]
 
 env:
-  FORCE_COLOR: 2
+  COMMIT_USER: GitHub Actions
+  COMMIT_EMAIL: actions@github.com
 
 jobs:
   run:
@@ -15,23 +16,22 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
-
+      - name: Clean install npm dependencies
+        run: npm ci
       - name: Update documentation
-        run: |
-          npm i
-          git checkout -b ${GITHUB_REF##*/}
-          npm run docs
-
+        run: npm run docs
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          author_name: GitHub Actions
-          author_email: actions@github.com
+          author_name: $COMMIT_USER
+          author_email: $COMMIT_EMAIL
           message: '📝 Updating Docs [ci skip]'
-          add: '.'
+          # Configure for custom directories if required
+          # add: '.' # default '.'
