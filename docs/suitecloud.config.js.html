@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: suitecloud.config.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,37 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: suitecloud.config.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @format
+ *  @memberof SuiteCloud
+ */
 
+const SuiteCloudJestUnitTestRunner = require('@oracle/suitecloud-unit-testing/services/SuiteCloudJestUnitTestRunner');
+//const exec = require('child_process').exec;
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = {
+  defaultProjectFolder: 'src',
+  commands: {
+    'project:deploy': {
+      beforeExecuting: async args => {
+        // We do not run Jest tests here...
+        // We execute before getting to this stage of deployment
+        return args;
+      },
+    },
+  },
+};
+</code></pre>
+        </article>
+    </section>
 
 
 

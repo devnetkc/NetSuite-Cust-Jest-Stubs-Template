@@ -1,0 +1,12 @@
+__tests__
+node_modules
+wiki
+docs
+.ci
+.github
+.vscode
+.jshintrc
+.npmrc
+.prettierignore
+.prettierrc.json
+jest.config.js
