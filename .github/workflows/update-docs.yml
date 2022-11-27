@@ -22,16 +22,16 @@ jobs:
           node-version: 16
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Update documentation
-        run: npm run docs
+        run: |
+          npm i
+          git checkout -b ${GITHUB_REF##*/}
+          npm run docs
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           author_name: GitHub Actions
           author_email: actions@github.com
-          message: '📝 Generated Documentation'
+          message: '📝 Updating Docs [ci skip]'
           add: '.'
