@@ -29,8 +29,8 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          author_name: $COMMIT_USER
-          author_email: $COMMIT_EMAIL
+          author_name: ${{ env.COMMIT_USER }}
+          author_email: ${{ env.COMMIT_EMAIL }}
           message: '📝 Updating Docs [ci skip]'
           # Configure for custom directories if required
           # add: '.' # default '.'
