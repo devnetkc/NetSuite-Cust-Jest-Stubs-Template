@@ -23,15 +23,17 @@
     "url": "https://github.com/devnetkc/NetSuite-Cust-Jest-Stubs-Template.git"
   },
   "scripts": {
-    "generate-jsDocs": "jsdoc -c .ci/config/jsDocsConf.json",
-    "generate-mdDocs": "jsdoc2md --template .ci/templates/README.hbs ./stubs/SuiteScripts/Modules/*.js > README.md",
+    "clean": "rm ./.ci/templates/README.temp.hbs",
+    "generate-contributors": "bash ./.ci/scripts/updateContributors.sh",
+    "generate-jsDocs": "jsdoc -c ./.ci/config/jsDocsConf.json",
+    "generate-mdDocs": "npm run generate-contributors && jsdoc2md --template ./.ci/templates/README.temp.hbs ./stubs/**/*[^.min].js >README.md && npm run clean",
     "generate-wiki": "node .ci/config/docsMD.config.js",
-    "docs": "npm run generate-jsDocs && npm run generate-mdDocs && npm run generate-wiki",
-    "open-docs": "open ./docs/index.html || start ./docs/index.html "
+    "docs": "npm run generate-mdDocs && npm run generate-jsDocs && npm run generate-wiki",
+    "open-docs": "open ./docs/index.html || start ./docs/index.html"
   },
   "devDependencies": {
+    "contributor-table": "^1.0.0",
     "jsdoc": "^3.6.11",
-    "jsdoc-to-markdown": "^7.1.1",
-    "jest-junit-reporter": "^1.1.0"
+    "jsdoc-to-markdown": "^7.1.1"
   }
 }
