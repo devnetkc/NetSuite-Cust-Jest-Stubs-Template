@@ -34,6 +34,13 @@ Azure yaml pipeline files are provided in [`.ci/workflows`](./.ci/workflows).
 
 - [`azure-pipelines-docs.yml`](./.ci/workflows/azure-pipelines-docs.yml) -- Generates documentation, commits,and pushes back to current PR/branch
 
+## 👥 Contributors
+
+| Name               | GitHub                                  | Twitter                                   |
+| ------------------ | --------------------------------------- | ----------------------------------------- |
+| **Ryan Valizan**   | [devnetkc](https://github.com/devnetkc) | [@devnetkc](https://twitter.com/devnetkc) |
+| **GitHub Actions** | [actions](https://github.com/actions)   | [@](https://twitter.com/)                 |
+
 ## Modules
 
 <dl>
@@ -141,4 +148,4 @@ Example set custom body field value for record
 | options.value | <code>String</code> | Value to set record field to |
 
 
-Happy Coding!
+Happy Coding! 🥳
