@@ -95,10 +95,9 @@ const customStubs = exclude =>
         ExcludedModule.useMinified.minName,
         ''
       );
-      Module.path = ExcludedModule.path;
+      Module.path = ExcludedModule.path + stubModuleName + ext;
       break;
     }
-    Module.path = Module.path + stubModuleName + ext;
     return Module;
   });
 
