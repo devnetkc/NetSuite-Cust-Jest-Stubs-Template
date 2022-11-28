@@ -12,10 +12,18 @@
  * @description Array of module names and paths to use for them in the stubs package
  */
 /**
+ * @typedef UseMinified
+ * @type {Object}
+ * @description Options for loading minified file
+ * @property {boolean} value - T/F do you want to use a minified version in define statement
+ * @property {String} minName='.min' - Optional alternative post fix identifier to add to file
+ */
+/**
  * @typedef ExcludeStub
  * @type {Object}
  * @property {String} name - "Directory/Path/ModuleName" -- CustomStub property to use
  * @property {String} path - Path to module for project -- generally you will use `\`${__dirname}/src/FileCabinet\``
+ * @property {UseMinified} useMinified - Options for using or not using minified files locally
  * @description Array of module names and paths to use for them in the stubs package
  */
 /**
@@ -57,16 +65,41 @@ const PKG_STUBS_PATH =
  */
 const customStubs = exclude =>
   Object.keys(CustomStubMap).map(filename => {
-    const StubModuleName = `/SuiteScripts/${filename}`;
-    let stubPath = `<rootDir>/node_modules/${PKG_STUBS_PATH}/${CustomStubMap[filename]}.js`;
-    const Exclude = exclude.filter(
-      moduleObj => moduleObj.name === StubModuleName
-    );
-    if (Exclude.length > 0) stubPath = `${Exclude[0].path}${StubModuleName}`;
-    return {
-      module: StubModuleName,
-      path: stubPath,
+    let stubModuleName = `/SuiteScripts/${filename}`;
+    let ext = '.js';
+    const Module = {
+      module: stubModuleName,
+      path: `<rootDir>/node_modules/${PKG_STUBS_PATH}/${CustomStubMap[filename]}`,
     };
+    // Loop over array of excludes and link min/non-min to project overrides
+    for (const ExcludedModule of exclude) {
+      if (RegExp(ExcludedModule.name).test(filename)) continue; //?
+      ExcludedModule.useMinified.minName =
+        ExcludedModule.useMinified.hasOwnProperty('minName')
+          ? ExcludedModule.useMinified.minName
+          : '.min';
+      const ModuleNameMinified = `${ExcludedModule.name}${ExcludedModule.useMinified.minName}`;
+      if (
+        ExcludedModule.name !== stubModuleName &&
+        ModuleNameMinified !== stubModuleName
+      )
+        continue;
+      if (ExcludedModule.useMinified.value) {
+        Module.path = ExcludedModule.path.replace(
+          ExcludedModule.useMinified.minName,
+          ''
+        );
+        break;
+      }
+      stubModuleName = stubModuleName.replace(
+        ExcludedModule.useMinified.minName,
+        ''
+      );
+      Module.path = ExcludedModule.path;
+      break;
+    }
+    Module.path = Module.path + stubModuleName + ext;
+    return Module;
   });
 
 module.exports = {
