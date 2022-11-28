@@ -65,6 +65,7 @@ const PKG_STUBS_PATH =
  */
 const customStubs = exclude =>
   Object.keys(CustomStubMap).map(filename => {
+    if (!Array.isArray(exclude)) throw 'EXCLUDED_STUBS_TYPEERROR';
     let stubModuleName = `/SuiteScripts/${filename}`;
     let ext = '.js';
     const Module = {
@@ -73,22 +74,13 @@ const customStubs = exclude =>
     };
     // Loop over array of excludes and link min/non-min to project overrides
     for (const ExcludedModule of exclude) {
-      if (RegExp(ExcludedModule.name).test(filename)) continue; //?
+      if (!RegExp(ExcludedModule.name).test(stubModuleName)) continue; //?
       ExcludedModule.useMinified.minName =
         ExcludedModule.useMinified.hasOwnProperty('minName')
           ? ExcludedModule.useMinified.minName
           : '.min';
-      const ModuleNameMinified = `${ExcludedModule.name}${ExcludedModule.useMinified.minName}`;
-      if (
-        ExcludedModule.name !== stubModuleName &&
-        ModuleNameMinified !== stubModuleName
-      )
-        continue;
       if (ExcludedModule.useMinified.value) {
-        Module.path = ExcludedModule.path.replace(
-          ExcludedModule.useMinified.minName,
-          ''
-        );
+        Module.path = ExcludedModule.path + stubModuleName + ext;
         break;
       }
       stubModuleName = stubModuleName.replace(
@@ -100,7 +92,18 @@ const customStubs = exclude =>
     }
     return Module;
   });
-
+/* 
+const ExcludeStubs = [
+  {
+    name: '/SuiteScripts/Modules/aModule',
+    path: `${__dirname}/src/FileCabinet`,
+    useMinified: {
+      value: false,
+    },
+  },
+];
+customStubs(ExcludeStubs); //?
+ */
 module.exports = {
   customStubs,
 };
