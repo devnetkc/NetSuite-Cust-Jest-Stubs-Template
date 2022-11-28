@@ -23,5 +23,7 @@ jobs:
           node-version: 16
       - name: Clean install npm dependencies
         run: npm ci
+      - name: Test package
+        run: npm test
       - name: Publish release to NPM
         run: npm publish
